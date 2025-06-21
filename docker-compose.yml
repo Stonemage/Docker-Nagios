@@ -9,29 +9,16 @@
 version: '3'
 services:
   nagios:
-    image: tronyx/nagios:latest
+    image: stonemage/nagios:latest
     container_name: nagios
-    restart: on-failure
+    restart: always
     ports:
-      - "8080:80"
-    environment:
-      NAGIOS_TIMEZONE: America/New_York
+      - '8780:80'
+    network_mode: bridge
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/localtime:/etc/timezone:ro"
-      - nagiosetc:/opt/nagios/etc
-      - nagiosvar:/opt/nagios/var
-      - customplugins:/opt/Custom-Nagios-Plugins
-      - nagiosgraphvar:/opt/nagiosgraph/var
-      - nagiosgraphetc:/opt/nagiosgraph/etc
-      - nagiosa2logs:/var/log/apache2
-
-volumes:
-    # To change from Docker-managed volumes to bind mounts, add a driver_opts section as detailed here
-    # https://stackoverflow.com/questions/35841241/docker-compose-named-mounted-volume
-    nagiosetc:
-    nagiosvar:
-    customplugins:
-    nagiosgraphvar:
-    nagiosgraphetc:
-    nagiosa2logs:
+      - /mnt/dock-nagios/nagios-etc:/opt/nagios/etc
+      - /mnt/dock-nagios/nagios-var:/opt/nagios/var
+      - /mnt/dock-nagios/nagios-plugins:/opt/Custom-Nagios-Plugins
+      - /mnt/dock-nagios/nagiosgraph-etc:/opt/nagiosgraph/etc
+      - /mnt/dock-nagios/nagiosgraph-var:/opt/nagiosgraph/var
+      - /mnt/dock-nagios/apache-logs:/var/log/apache2
