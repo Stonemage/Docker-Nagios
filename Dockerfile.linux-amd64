@@ -5,7 +5,7 @@ ARG BUILDKIT_SBOM_SCAN_STAGE=true
 FROM ubuntu:24.04
 
 LABEL name="Nagios"
-LABEL nagiosVersion="4.5.7"
+LABEL nagiosVersion="4.5.9"
 LABEL nagiosPluginsVersion="2.4.12"
 LABEL nrpeVersion="4.1.1"
 LABEL nscaVersion="2.10.3"
