@@ -9,7 +9,7 @@
 version: '3'
 services:
   nagios:
-    image: tronyx/Docker-Nagios:latest
+    image: tronyx/docker-nagios:latest
     container_name: nagios
     restart: always
     ports:
